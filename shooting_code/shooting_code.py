@@ -69,11 +69,12 @@ def draw_shield_bar(surf, x, y, pct):
 
 
 def draw_exp_bar(surf, x, y, pct):
+    global max_exp
     if pct < 0:
         pct = 0
     BAR_LENGTH = 580
     BAR_HEIGHT = 10
-    fill = (pct / 100) * BAR_LENGTH
+    fill = (pct / max_exp) * BAR_LENGTH
     outline_rect = pygame.Rect(x, y, BAR_LENGTH, BAR_HEIGHT)
     fill_rect = pygame.Rect(x, y, fill, BAR_HEIGHT)
     pygame.draw.rect(surf, GREEN, fill_rect)
@@ -251,9 +252,14 @@ class Mob(pygame.sprite.Sprite):
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
+        global mode_lv
+
         pygame.sprite.Sprite.__init__(self)
         self.image = bullet_img
         self.image.set_colorkey(BLACK)
+        if mode_lv[0] > 0:
+            self.image = bullet3_img
+            self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.bottom = y
         self.rect.centerx = x
@@ -261,9 +267,7 @@ class Bullet(pygame.sprite.Sprite):
         self.speedx = 0
 
     def update(self):
-        global mode_lv
-        if mode_lv[0] == 1:
-            self.image = bullet3_img
+
         self.rect.y += self.speedy
         self.rect.x += self.speedx
 
@@ -278,7 +282,7 @@ class Bullet2(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = bullet2_img
         self.image.set_colorkey(BLACK)
-        if mode_lv[1] > 0:
+        if mode_lv[1] > 1:
             self.image = bullet4_img
             self.image.set_colorkey(BLACK)
 
@@ -472,7 +476,7 @@ bosshp = 3
 stage = 1
 level = 1
 
-mode_lv = [0, 0, 0]
+mode_lv = [0, 0, 1]
 count = 0
 
 s_delay = 40
