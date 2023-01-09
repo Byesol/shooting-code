@@ -474,7 +474,7 @@ s2_delay= 60
 max_exp = 100
 spd=1
 begin=1
-end= 2
+end= 0
 center=0
 
 
