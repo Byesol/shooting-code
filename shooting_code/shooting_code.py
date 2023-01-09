@@ -277,15 +277,16 @@ class Bullet2(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = bullet2_img
         self.image.set_colorkey(BLACK)
+        if mode_lv[1] > 0:
+            self.image = bullet4_img
+            self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.bottom = y
         self.rect.centerx = x
         self.speedy = -2
         self.speedx = random.randrange(-3,3)
     def update(self): 
-        global mode_lv
-        if mode_lv[0]==2:
-            self.image = bullet4_img 
+        global mode_lv      
         self.rect.y += self.speedy
         self.rect.x += self.speedx
        
