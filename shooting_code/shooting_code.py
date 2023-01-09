@@ -481,7 +481,7 @@ count = 0
 
 s_delay = 40
 s2_delay = 60
-max_exp = 100
+max_exp = 60
 spd = 1
 begin = 1
 end = 0
@@ -553,12 +553,12 @@ while running:
                             s_delay /= 2
                         if mode_lv[1] > 2:
 
-                            s2_delay /= 2
+                            s2_delay /= 3
                         print(i, mode_lv[i])
                         spd = mode_lv[2]*2
                         level += 1
                         exp = 0
-                        max_exp += 50
+                        max_exp += 30
 
             pygame.display.flip()
 
@@ -664,7 +664,7 @@ while running:
                         stage = 3
             # elif stage ==2
             elif stage == 3:
-                bosshp = 30
+                bosshp = 50
                 if boss3 == 0:
                     boss3 = Boss()
                     all_sprites.add(boss3)
